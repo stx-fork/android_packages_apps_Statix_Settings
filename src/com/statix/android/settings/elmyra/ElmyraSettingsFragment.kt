@@ -26,7 +26,7 @@ import android.provider.Settings
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.SwitchPreference
+import androidx.preference.SwitchPreferenceCompat
 import com.android.settings.widget.LabeledSeekBarPreference
 import com.android.settings.widget.SeekBarPreference
 import com.statix.android.systemui.elmyra.R
@@ -87,14 +87,14 @@ class ElmyraSettingsFragment : PreferenceFragmentCompat() {
   }
 
   inner class SettingsObserver(handler: Handler) : ContentObserver(handler) {
-    override fun onChange(selfChange: Boolean, uri: Uri) {
+    override fun onChange(selfChange: Boolean, uri: Uri?) {
       updateUi()
     }
   }
 
   private fun updateUi() {
     // Enabled
-    findPreference<SwitchPreference>(context!!.getString(R.string.pref_key_enabled))?.apply {
+    findPreference<SwitchPreferenceCompat>(context!!.getString(R.string.pref_key_enabled))?.apply {
       setChecked(getEnabled(context))
     }
 
@@ -112,7 +112,7 @@ class ElmyraSettingsFragment : PreferenceFragmentCompat() {
     }
 
     // Screen state based on action
-    findPreference<SwitchPreference>(context!!.getString(R.string.pref_key_allow_screen_off))
+    findPreference<SwitchPreferenceCompat>(context!!.getString(R.string.pref_key_allow_screen_off))
         ?.apply {
           val screenForced =
               getBoolean(

@@ -24,9 +24,9 @@ android_library {
     name: "StatixSettings-res",
     static_libs: [
         "elmyra-sysui-shared",
-        "Settings-core",
     ],
     resource_dirs: ["res", "res-product"],
+    use_resource_processor: true,
 }
 
 android_library {
@@ -39,9 +39,10 @@ android_library {
     ],
     static_libs: [
         "adaptivecharging",
+        "Settings-core",
         "StatixSettings-res",
     ],
-    manifest: ":Settings_manifest",
+    plugins: ["androidx.room_room-compiler-plugin"],
 }
 
 android_app {
@@ -59,6 +60,7 @@ android_app {
     static_libs: [
         "StatixSettings-core",
     ],
+    use_resource_processor: true,
     uses_libs: ["org.apache.http.legacy"],
     optimize: {
         proguard_flags_files: [
@@ -69,6 +71,4 @@ android_app {
     overrides: [
         "Settings",
     ],
-    manifest: ":Settings_manifest",
-    additional_manifests: ["AndroidManifest.xml"],
 }
