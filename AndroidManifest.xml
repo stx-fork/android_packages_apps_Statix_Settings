@@ -18,21 +18,15 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:androidprv="http://schemas.android.com/apk/prv/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         package="com.android.settings"
         coreApp="true"
         android:sharedUserId="android.uid.system">
 
-    <application android:label="@string/settings_label"
+    <application android:name="com.statix.android.settings.StatixSettingsApplication"
             android:icon="@drawable/ic_launcher_settings"
             android:theme="@style/Theme.Settings"
-            android:hardwareAccelerated="true"
-            android:requiredForAllUsers="true"
-            android:supportsRtl="true"
-            android:backupAgent="com.android.settings.backup.SettingsBackupHelper"
-            android:usesCleartextTraffic="true"
-            android:defaultToDeviceProtectedStorage="true"
-            android:directBootAware="true"
-            android:appComponentFactory="androidx.core.app.CoreComponentFactory">
+            tools:replace="android:name">
 
         <uses-library android:name="org.apache.http.legacy" />
 
